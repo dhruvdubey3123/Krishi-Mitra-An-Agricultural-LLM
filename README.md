@@ -41,10 +41,10 @@ under the guidance of **Dr. Shraddha Phansalkar**.
 
 | Contributor |
 |---|
-| Raj Ambavane |
 | Dhruv Dubey |
-| Vansh Jain |
-| Shantanu Ramavat |
+| Raj Ambavane |
+| Omkar Lande |
+| Oindrilla Banerjee |
 
 Development was done collaboratively on a shared machine, so the upstream
 commit history sits under a single account and does not reflect individual
