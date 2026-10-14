@@ -27,6 +27,43 @@
 | 🌦️ **Weather Enrichment** | Localized weather context for farming decisions |
 | 🛡️ **Response Hardening** | Stale/late backend reply protection for reliability |
 | 📞 **Smart Helplines** | Conditional helpline suggestions only when truly relevant |
+| 🗣️ **Hindi & Marathi** | Devanagari detection routes answers back in the farmer's language |
+
+---
+
+## 🎓 Project Context
+
+Final-year B.Tech capstone project (Computer Science and Engineering,
+MIT Art, Design and Technology University, Pune), built by a four-person team.
+
+| Contributor |
+|---|
+| Raj Ambavane |
+| Dhruv Dubey |
+| Vansh Jain |
+| Shantanu Ramavat |
+
+Development was done collaboratively on a shared machine, so the upstream
+commit history sits under a single account and does not reflect individual
+contribution. Upstream repository:
+[RajAmbavane/Krishi-Mitra-An-Agricultural-LLM](https://github.com/RajAmbavane/Krishi-Mitra-An-Agricultural-LLM).
+
+---
+
+## 🗣️ Multilingual Handling
+
+Language support is handled in the prompt layer rather than through separate
+per-language models, implemented in [`backend/prompt_builder.py`](backend/prompt_builder.py):
+
+- `contains_devanagari()` scans the query for characters in the Devanagari
+  Unicode block (U+0900–U+097F).
+- The system prompt then instructs the model to answer in the user's own
+  language — Marathi if the query was Marathi, otherwise Hindi.
+- Greeting and acknowledgement detection covers transliterated Hindi and
+  Marathi (`namaste`, `shukriya`, `dhanyavad`) alongside English, and short
+  acknowledgements get a quick reply without a full model call.
+- The base model is **Llama 3.2 3B Instruct**, which supports Hindi among its
+  officially listed languages.
 
 ---
 
@@ -96,6 +133,15 @@ SEARXNG_BACKOFF_SECONDS=60
 ## 🔍 RAG Setup (SearXNG)
 
 RAG is enabled through `backend/search_engine.py` and used by `POST /ask`.
+
+Retrieval is **restricted to a whitelist of Indian government and meteorological
+domains** rather than the open web, so answers about schemes, prices and
+advisories are grounded in authoritative sources: `krishi.maharashtra.gov.in`,
+`mahadbt.maharashtra.gov.in`, `agricoop.gov.in`, `agmarknet.gov.in`,
+`enam.gov.in`, `soilhealth.dac.gov.in`, `pmkisan.gov.in`, `msp.gov.in`,
+`mkisan.gov.in`, `mausam.imd.gov.in`, plus two weather providers. Unreachable
+SearXNG endpoints are backed off for a configurable interval instead of being
+retried on every request.
 
 ### Option A — Use your local `searxng` folder
 If you already have a local SearXNG setup, start it and ensure it serves on `http://127.0.0.1:8888`.
