@@ -10,9 +10,11 @@
 [![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-> Empowering Indian farmers with conversational AI guidance on crops, pests, irrigation, soil health, market prices, and government schemes — powered by a local Llama model with optional RAG retrieval.
+> Conversational agricultural guidance for Indian farmers on crops, pests, irrigation, soil health, market prices and government schemes. Answers in Hindi or Marathi, grounded in official government sources, served by a locally hosted Llama 3.2 model.
 
 </div>
+
+![Krishi Mitra sign-in screen](docs/auth_screen.png)
 
 ---
 
