@@ -36,7 +36,8 @@
 ## 🎓 Project Context
 
 Final-year B.Tech capstone project (Computer Science and Engineering,
-MIT Art, Design and Technology University, Pune), built by a four-person team.
+MIT Art, Design and Technology University, Pune), built by a four-person team
+under the guidance of **Dr. Shraddha Phansalkar**.
 
 | Contributor |
 |---|
